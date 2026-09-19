@@ -3,8 +3,24 @@
 ## Objetivo 
 Practica el consumo de datos de API con Fetch i Axios. 
 El ejercicio consiste en que a partir de una estructura simple de proyecto (index.html, styles.cc y main.js) hay que probar ambas herramientas de consumo de APIS:
-- Con Axios, hay que buscar en su CDN 
-- Con Fetch
+
+1. Realizar peiciones HTTP para obtener datos de API externa:
+    • Con Axios, hay que buscar en su CDN 
+    • Con librería Fetch
+
+ 2. Gestionar los estados de la interficie de usuario: 
+    • Carga
+    • Visualización de datos  
+    • Error 
+
+ 3. Implementación de funciones de: 
+    • Busqueda
+    • Paginación 
+
+ 4. Comparar las diferéncias prácticas y ventajas de Fetch vs Axios: 
+    • Axios:
+    • Libreria Fetch:  
+
 
 
 ## Funcionalidades
@@ -15,18 +31,21 @@ El ejercicio consiste en que a partir de una estructura simple de proyecto (inde
 - Tests unitarios con Vitest (si da tiempo)
 
 
+
 ## Estructura del proyecto
-├── index.html
-├── main.js
-├── styles.css
-└── README.md
+    ├── index.html
+    ├── main.js
+    ├── styles.css
+    └── README.md
 
 
 
 ## Forma de uso
-1. A
-    • In
-    
+1. Ver repositorio https://github.com/Rami-Ana/S3-1_api-consumer-app
+
+2. Probar funcion busqueda y paginación
+
+
 
 ## Tecnologías
 • JavaScript
