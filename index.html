@@ -20,6 +20,7 @@
                 <h1>Titulo de la aplicación</h1>
                 <h2>Controles e interacción:</h2>
                 <select id="apiSelector">
+                    <option value="0">---Selecciona herramienta---</option>
                     <option value="axios">Usar Axios</option>
                     <option value="fetch">Usar Fetch</option>
                 </select>
@@ -27,7 +28,7 @@
                 <button id="getDataButton">Obtener datos</button>
             </div>
 
-        </header>
+        </header>   
 
         <main> <!-- main con estados resultados y paginación -->
             <p id="loadingMessage" class="hidden">Cargando...</p> <!--Estado de carga-->

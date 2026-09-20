@@ -50,7 +50,8 @@ El ejercicio consiste en que a partir de una estructura simple de proyecto (inde
 ## Forma de uso
 1. Ver repositorio https://github.com/Rami-Ana/S3-1_api-consumer-app
 
-2. Probar funcion busqueda y paginación
+2. Previsualizar en navegador
+3. Selecona en el selcetor (fetch o Api) y dale al botón (para probarfuncion busqueda y paginación)
 
 
 
