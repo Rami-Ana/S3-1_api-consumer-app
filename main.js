@@ -1,3 +1,7 @@
+
+
+console.log("hola");
+
 // » Aquesta és la part més important de l'activitat. Hauràs d'implementar la lògica JavaScript per fer funcionar la teva aplicació. Utilitzarem l'API de proves 
 // » JSONPlaceholder  per als  posts  ( https://jsonplaceholder.typicode.com/posts ).
 // » Comença definint les constants, les variables d'estat i obtenint les referències als elements del DOM:
@@ -37,8 +41,8 @@ function hideError() {
 
 // Funció principal per obtenir dades (a implementar)
 async function fetchData() {
-    const searchTerm = /* ... (Obtén el valor de searchInput) */;
-    const useAxios = /* ... (Comprova si apiSelector.value és 'axios') */;
+    const searchTerm = "" ;/* ... (Obtén el valor de searchInput) */
+    const useAxios = "" ; /* ... (Comprova si apiSelector.value és 'axios') */
     
     showLoading();
     hideError();

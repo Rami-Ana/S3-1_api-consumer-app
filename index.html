@@ -1,3 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ana Ramírez Moreno">
+    <title>S3.01 | Consumo de API con Axios y Fetch </title>
+
+    <!-- CDN: cargar Axios sin instalar -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="main.js" defer></script>
+
+</head>
+
+<body>
+    <div class="app-container"> <!-- contenedor principal -->
+        <header> <!-- Header -->
+            <div class="">
+                <h1>Titulo de la aplicación</h1>
+                <h2>Controles e interacción:</h2>
+                <select id="apiSelector">
+                    <option value="axios">Usar Axios</option>
+                    <option value="fetch">Usar Fetch</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Buscar...">
+                <button id="getDataButton">Obtener datos</button>
+            </div>
+
+        </header>
+
+        <main> <!-- main con estados resultados y paginación -->
+            <p id="loadingMessage" class="hidden">Cargando...</p> <!--Estado de carga-->
+            <p id="errorMessage" class="hidden"></p> <!--Estado error-->
+            <section>
+                <h3>Resultados datos API:</h3>
+                <section id="results"></section> <!--No <p>, serán varias cards-->
+            </section>
+            <nav id="pagination" class="pagination"> <!-- navegación -->
+                <!-- paginación dinamc en JS-->
+            </nav>
+        </main>
+    </div>
+
+
+</body>
+
+</html>
+
 <!-- » Hauràs de crear l'estructura HTML bàsica per a la teva aplicació. Aquesta estructura hauria d'incloure:
 Un contenidor principal per a tot el contingut de la pàgina, que encapsuli la teva aplicació.
 Una capçalera de la pàgina () que contingui:

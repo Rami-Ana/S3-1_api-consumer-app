@@ -4,6 +4,13 @@
 Practica el consumo de datos de API con Fetch i Axios. 
 El ejercicio consiste en que a partir de una estructura simple de proyecto (index.html, styles.cc y main.js) hay que probar ambas herramientas de consumo de APIS:
 
+0. Acondicionar setup inicial:
+    • index.html
+    • styles.css
+    • main.js
+    • Funciones Fetch / Axios
+    • Paginación
+
 1. Realizar peiciones HTTP para obtener datos de API externa:
     • Con Axios, hay que buscar en su CDN 
     • Con librería Fetch
