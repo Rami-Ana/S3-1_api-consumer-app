@@ -7,57 +7,37 @@
     <meta name="author" content="Ana Ramírez Moreno">
     <title>S3.01 | Consumo de API con Axios y Fetch </title>
 
-    <!-- CDN: cargar Axios sin instalar -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="styles.css">
-
-
 </head>
 
 <body>
-    <div class="app-container"> <!-- contenedor principal -->
-        <header> <!-- Header -->
+    <div class="app-container">  
+        <header>  
             <div class="">
                 <h1>Buscador de Lorem Ipsum</h1>
                 <h3>Escribe la palabra que aparece en el lorem Ipsum:</h2>
-                <select id="apiSelector">
-                    <option value="0">---Selecciona herramienta---</option>
-                    <option value="axios">Usar Axios</option>
-                    <option value="fetch">Usar Fetch</option>
-                </select>
-                <input type="text" id="searchInput" placeholder="Buscar...">
-                <button id="getDataButton">Buscar Lorem</button>
+                    <select id="apiSelector">
+                        <option value="0">---Selecciona herramienta---</option>
+                        <option value="axios">Usar Axios</option>
+                        <option value="fetch">Usar Fetch</option>
+                    </select>
+                    <input type="text" id="searchInput" placeholder="Buscar...">
+                    <button id="getDataButton">Buscar Lorem</button>
             </div>
+        </header>
 
-        </header>   
-
-        <main> <!-- main con estados resultados y paginación -->
-            <p id="loadingMessage" class="hidden">Cargando...</p> <!--Estado de carga-->
-            <p id="errorMessage" class="hidden"></p> <!--Estado error-->
+        <main>  
+            <p id="loadingMessage" class="hidden">Cargando...</p>  
+            <p id="errorMessage" class="hidden"></p>  
             <section>
-                <section id="results"></section> <!--No <p>, serán varias cards-->
+                <section id="results"></section>  
             </section>
-            <nav id="pagination" class="pagination"> <!-- navegación -->
-                <!-- paginación dinamc en JS-->
+            <nav id="pagination" class="pagination">  
             </nav>
         </main>
     </div>
 
-
 </body>
-
 </html>
-
-<!-- » Hauràs de crear l'estructura HTML bàsica per a la teva aplicació. Aquesta estructura hauria d'incloure:
-Un contenidor principal per a tot el contingut de la pàgina, que encapsuli la teva aplicació.
-Una capçalera de la pàgina () que contingui:
-Un títol principal () per a la teva aplicació.
-Una secció dedicada als controls i la interacció ( o si no és navegació principal) que albergarà:
-- Un selector () amb dues opcions: "Utilitza Fetch" i "Utilitza Axios". Un camp d'entrada de text () amb un placeholder per a la cerca.
-- Un botó () per "Obtenir Dades".
-Fora de la capçalera, la secció principal del contingut () de la teva aplicació, que albergarà:
-- Un element per mostrar l'estat de càrrega ().
-- Un element per mostrar missatges d'error (). Recorda que inicialment ha d'estar ocult.
-- Una secció de resultats (o) on es mostraran les dades obtingudes de l'API.
-- Una secció per a la paginació ( o ) que contindrà els botons per navegar per les pàgines. -->
