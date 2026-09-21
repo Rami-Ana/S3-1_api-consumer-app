@@ -1,3 +1,138 @@
+/* ===========================
+   GLOBAL
+=========================== */
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.hidden {
+    display: none;
+}
+
+/*    CONTROLS (selector + input + botón) */
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.controls select,
+.controls input {
+    padding: 8px;
+    font-size: 14px;
+}
+
+.controls button {
+    padding: 8px 14px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background: #1558b0;
+}
+
+/* LOADING & ERROR */
+#loadingMessage {
+    background: #e8f0fe;
+    color: #1a73e8;
+    padding: 10px;
+    border-left: 4px solid #1a73e8;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+#errorMessage {
+    background: #ffdddd;
+    color: #a30000;
+    padding: 10px;
+    border-left: 4px solid #a30000;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+/* ===========================
+   RESULTADOS (GRID)
+=========================== */
+#results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.card h4 {
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.card p {
+    color: #555;
+}
+
+/* ===========================
+   PAGINACIÓN
+=========================== */
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background: #1558b0;
+}
+
+.pagination button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
 /* » Afegeix estils CSS per donar una aparença professional i funcional a la teva aplicació. Hauries de pensar en:
 Estils globals per al body (tipografia, amplada màxima, marges, etc.).
 Estils per ocultar elements (.hidden).
