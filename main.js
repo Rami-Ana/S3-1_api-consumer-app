@@ -10,8 +10,6 @@ const itemsPerPage = 10;
 // const itemsToShow = data.slice(start, end);
 
 
-
-
 /* =========== REFERÉNCIA AL DOM =========== */
 
 const apiSelector = document.getElementById("apiSelector");
@@ -149,46 +147,67 @@ function setupPagination(totalItems) {
 // ============= Fetch ============ */
 async function fetchDataWithFetch(searchTerm) {
     try {
-        // 1. Obtener datos de la API
-        const response = await fetch(API_URL);
+        // 1. Petición a la API con paginación y búsqueda
+        const response = await fetch(
+            `${API_URL}?_page=${currentPage}&_limit=${itemsPerPage}&q=${searchTerm}`);
+
+        // 2. Comprobar si la respuesta HTTP es correcta 
+        if (!response.ok) { // .ok Este lo generas tú para manejar errores HTTP.
+            throw new Error(`Error HTTP ${response.status}`); //Status = 404...
+        } 
+
+        // 3. Leer el JSON (array de posts ya filtrados y paginados)
         const data = await response.json();
+        
+        // 4. Leer el total de elementos desde el header
+        const totalItems = response.headers.get("X-Total-Count");
 
-        // 2. Filtrar por búsqueda
-        const filtered = data.filter(item =>
-            item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            item.body.toLowerCase().includes(searchTerm.toLowerCase())
-            // hacer con ID o User
-        );
-
-        if (filtered.length === 0) {
-            showError(`No se ha encontrado "${searchTerm}"`);
-            clearInput();
-            paginationContainer.innerHTML = "";
-            return;
-        }
-
-        // 3. Calcular totalItems
-        const totalItems = filtered.length;
-
-        // 4. Calcular items de la página actual
-        const start = (currentPage - 1) * itemsPerPage;
-        const end = start + itemsPerPage;
-        const itemsToShow = filtered.slice(start, end);
-
-        // 5. Llamar a displayResults
-        displayResults(itemsToShow, totalItems);
+        // 5. Llamar a displayResults, imprime lo que encuentra
+        displayResults(data, totalItems);
 
     } catch (error) {
-        showError("Error al obtener datos con Fetch");
+        showError("Error al obtener datos con Fetch:"+ error.message);
+        //.message es una propiedad del objeto Error.
+        //console.log(error);
+        //error interno de Fetch o de código: sintaxis, conexion, 
     }
 }
 
 // ============= Axios ============ */
 async function fetchDataWithAxios(searchTerm) {
-    // ... (Implementa la petició amb Axios)
+    try {
+        // 1. Petición GET con Axios usando params
+        const response = await axios.get(API_URL, {
+            params: {
+                _page: currentPage,
+                _limit: itemsPerPage,
+                q: searchTerm
+            }
+        });
+
+        // 2. Axios lanza error automáticamente si el status es 4xx o 5xx
+        //    Así que no hace falta comprobar response.ok
+
+        // 3. Datos ya vienen parseados (Axios hace JSON.parse por ti)
+        const data = response.data;
+
+        // 4. Leer el total desde headers (igual que Fetch)
+        const totalItems = response.headers["x-total-count"];
+
+        // 5. Mostrar resultados
+        displayResults(data, totalItems);
+
+    } catch (error) {
+        // Axios tiene su propio objeto error
+        const message = error.response
+            ? `Error HTTP ${error.response.status}: ${error.response.statusText}`
+            : error.message;
+
+        showError("Error al obtener datos con Axios: " + message);
+    }
 }
+
 
 function clearInput() {
     resultsContainer.innerHTML = "";
 }
-
