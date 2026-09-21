@@ -19,15 +19,15 @@
     <div class="app-container"> <!-- contenedor principal -->
         <header> <!-- Header -->
             <div class="">
-                <h1>Titulo de la aplicación</h1>
-                <h2>Controles e interacción:</h2>
+                <h1>Buscador de Lorem Ipsum</h1>
+                <h3>Escribe la palabra que aparece en el lorem Ipsum:</h2>
                 <select id="apiSelector">
                     <option value="0">---Selecciona herramienta---</option>
                     <option value="axios">Usar Axios</option>
                     <option value="fetch">Usar Fetch</option>
                 </select>
                 <input type="text" id="searchInput" placeholder="Buscar...">
-                <button id="getDataButton">Obtener datos</button>
+                <button id="getDataButton">Buscar Lorem</button>
             </div>
 
         </header>   
@@ -36,7 +36,6 @@
             <p id="loadingMessage" class="hidden">Cargando...</p> <!--Estado de carga-->
             <p id="errorMessage" class="hidden"></p> <!--Estado error-->
             <section>
-                <h3>Resultados datos API:</h3>
                 <section id="results"></section> <!--No <p>, serán varias cards-->
             </section>
             <nav id="pagination" class="pagination"> <!-- navegación -->

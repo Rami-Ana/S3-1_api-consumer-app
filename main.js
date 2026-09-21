@@ -27,28 +27,19 @@ const paginationContainer = document.getElementById("pagination");
 fetchButton.addEventListener("click", fetchData);
 
 
-// PRUEBA ***********************************************************************
-// const datosDePrueba = [
-//     { title: "Título 1", body: "Texto del post 1" },
-//     { title: "Título 2", body: "Texto del post 2" },
-//     { title: "Título 3", body: "Texto del post 3" }
-// ];
-
-// displayResults(datosDePrueba, datosDePrueba.length);
-// FIN PRUEBA ******************************************************************
-
 
 /* =========== funciones de estado =========== */
 function showLoading() {
-    loadingElement.classList.remove("hidden"); /* ESTADO */
+  loadingElement.classList.remove('hidden');
+  errorElement.classList.add('hidden'); 
 }
-
 function hideLoading() {
     loadingElement.classList.add("hidden");
 }
 
 function showError(message) { //element.classList["hidden", "error", "3"]
     // element.style.display = "none";
+    hideLoading();
     errorElement.textContent = message;
     errorElement.classList.remove("hidden");
 }
@@ -62,21 +53,21 @@ async function fetchData() {
     const searchTerm = searchInput.value.trim();
     const noSelect = apiSelector.value === "0";
     const useAxios = apiSelector.value === "axios";
-    // const usefetch = apiSelector.value === "fetch";
 
+  showLoading();
+    hideError();
 
-    if (noSelect) { showError('Debes elegir herramienta: >>Axios o >>Fetch'); return; }
+    if (noSelect) { showError('Debes elegir herramienta: [Axios] o [Fetch]'); return; }
 
     if (searchTerm === "") { showError('Debes escribir el la barra'); return; }
 
-    showLoading();
-    hideError();
+  
 
     try {
         if (useAxios) {
-            fetchDataWithAxios(searchTerm);
+           await fetchDataWithAxios(searchTerm);
         } else {
-            fetchDataWithFetch(searchTerm);
+            await fetchDataWithFetch(searchTerm);
         }
     } catch (error) {
         showError("Error inesperado");
@@ -95,9 +86,16 @@ function displayResults(items, totalItems) {
 
     clearInput();
 
+    if (items.length === 0) {
+    showError(`No se ha encontrado "${searchInput.value}"`);
+    return;
+}
+
     /* ===== BUSQUEDA ===== */
     items.forEach(item => {
         console.log("Prueba item:", item.title);
+
+        
 
         const card = document.createElement("div");
         // card.classList.add("card"); // opcional, si tienes estilos
