@@ -42,27 +42,24 @@ function hideError() {
 
 async function fetchData() {
     const searchTerm = searchInput.value.trim();
-    const noSelect = apiSelector.value === "0";
-    const useAxios = apiSelector.value === "axios";
+    const apiMethod = apiSelector.value;
 
     showLoading();
     hideError();
 
-    if (noSelect) { showError('Debes elegir herramienta: [Axios] o [Fetch]'); return; }
+    if (searchTerm === "") { showError('⚠️ Escribe qué quieres buscar'); return; }
 
-    if (searchTerm === "") { showError('Debes escribir el la barra'); return; }
-
-    try {
-        if (useAxios) {
-            await fetchDataWithAxios(searchTerm);
-        } else {
+    switch (apiMethod) {
+        case 'fetch':
             await fetchDataWithFetch(searchTerm);
-        }
-    } catch (error) {
-        showError("Error inesperado");
-    } finally {
-        hideLoading();
+            break;
+        case 'axios':
+            await fetchDataWithAxios(searchTerm);
+            break;
+        default:
+            showError('⚠️ Elige búsqueda de datos por [Axios] o [Fetch]');
     }
+    hideLoading();
 }
 
 function displayResults(items, totalItems) {
@@ -70,7 +67,8 @@ function displayResults(items, totalItems) {
     clearInput();
 
     if (items.length === 0) {
-        showError(`No se ha encontrado "${searchInput.value}"`);
+        showError(`😞 No se ha encontrado "${searchInput.value}"`);
+        paginationContainer.innerHTML = "";
         return;
     }
 
@@ -143,7 +141,7 @@ async function fetchDataWithFetch(searchTerm) {
         displayResults(data, totalItems);
 
     } catch (error) {
-        showError("Error al obtener datos con Fetch:" + error.message);
+        showError("🚨 Error al obtener datos con Fetch:" + error.message);
     }
 }
 
@@ -169,7 +167,7 @@ async function fetchDataWithAxios(searchTerm) {
             ? `Error HTTP ${error.response.status}: ${error.response.statusText}`
             : error.message;
 
-        showError("Error al obtener datos con Axios: " + message);
+        showError("🚨 Error al obtener datos con Axios: " + message);
     }
 }
 
