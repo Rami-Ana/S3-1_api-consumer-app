@@ -13,14 +13,12 @@ const errorElement = document.getElementById("errorMessage");
 const resultsContainer = document.getElementById("results");
 const paginationContainer = document.getElementById("pagination");
 
-// fetchButton.addEventListener("click", fetchData); //ERROR: actualiza desde la pagina que estes y no vuelve a pag 1 auto
-fetchButton.addEventListener("click", startSearch); //reinicia pag
+fetchButton.addEventListener("click", startSearch); 
 
 function startSearch() {
     currentPage = 1;
     fetchData();
 }
-
 
 function showLoading() {
     loadingElement.classList.remove('hidden');
@@ -63,7 +61,6 @@ async function fetchData() {
 }
 
 function displayResults(items, totalItems) {
-
     clearInput();
 
     if (items.length === 0) {
@@ -101,7 +98,7 @@ function setupPagination(totalItems) {
 
         prevButton.addEventListener("click", () => {
             currentPage--;
-            fetchData(); // vuelve a cargar datos
+            fetchData();
         });
 
         paginationContainer.appendChild(prevButton);
@@ -118,7 +115,7 @@ function setupPagination(totalItems) {
 
         nextButton.addEventListener("click", () => {
             currentPage++;
-            fetchData(); // vuelve a cargar datos
+            fetchData();
         });
 
         paginationContainer.appendChild(nextButton);
@@ -135,9 +132,7 @@ async function fetchDataWithFetch(searchTerm) {
         }
 
         const data = await response.json();
-
         const totalItems = response.headers.get("X-Total-Count");
-
         displayResults(data, totalItems);
 
     } catch (error) {
@@ -155,18 +150,14 @@ async function fetchDataWithAxios(searchTerm) {
             }
         });
 
-
         const data = response.data;
-
         const totalItems = response.headers["x-total-count"];
-
         displayResults(data, totalItems);
 
     } catch (error) {
         const message = error.response
             ? `Error HTTP ${error.response.status}: ${error.response.statusText}`
             : error.message;
-
         showError("🚨 Error al obtener datos con Axios: " + message);
     }
 }
