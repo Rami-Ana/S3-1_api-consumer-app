@@ -13,7 +13,14 @@ const errorElement = document.getElementById("errorMessage");
 const resultsContainer = document.getElementById("results");
 const paginationContainer = document.getElementById("pagination");
 
-fetchButton.addEventListener("click", fetchData);
+// fetchButton.addEventListener("click", fetchData); //ERROR: actualiza desde la pagina que estes y no vuelve a pag 1 auto
+fetchButton.addEventListener("click", startSearch); //reinicia pag
+
+function startSearch() {
+    currentPage = 1;
+    fetchData();
+}
+
 
 function showLoading() {
     loadingElement.classList.remove('hidden');
@@ -23,7 +30,7 @@ function hideLoading() {
     loadingElement.classList.add("hidden");
 }
 
-function showError(message) {  
+function showError(message) {
     hideLoading();
     errorElement.textContent = message;
     errorElement.classList.remove("hidden");
@@ -85,11 +92,11 @@ function displayResults(items, totalItems) {
 
 function setupPagination(totalItems) {
     paginationContainer.innerHTML = "";
-    const totalPages = Math.ceil(totalItems / itemsPerPage); // calcula pág total
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     if (currentPage > 1) {
         const prevButton = document.createElement("button");
-        prevButton.textContent = "Anterior";
+        prevButton.innerHTML = `<i class="fa-solid fa-arrow-left"></i>`;
 
         prevButton.addEventListener("click", () => {
             currentPage--;
@@ -99,9 +106,14 @@ function setupPagination(totalItems) {
         paginationContainer.appendChild(prevButton);
     }
 
+    const pageInfo = document.createElement("span");
+    pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
+    pageInfo.classList.add("page-info");
+    paginationContainer.appendChild(pageInfo);
+
     if (currentPage < totalPages) {
         const nextButton = document.createElement("button");
-        nextButton.textContent = "Siguiente";
+        nextButton.innerHTML = `<i class="fa-solid fa-arrow-right"></i>`;
 
         nextButton.addEventListener("click", () => {
             currentPage++;
