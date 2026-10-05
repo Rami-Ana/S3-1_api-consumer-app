@@ -78,12 +78,15 @@ function displayResults(items, totalItems) {
         console.log("Prueba item:", item.title);
 
         const card = document.createElement("div");
+        card.classList.add("card");
 
-        card.innerHTML = `
-            <h4>${item.title}</h4>
-            <p>${item.body}</p>
-        `;
+        const title = document.createElement("h4");
+        title.textContent = item.title;
 
+        const body = document.createElement("p");
+        body.textContent = item.body;
+
+        card.append(title, body);
         resultsContainer.appendChild(card);
     });
 
